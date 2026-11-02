@@ -17,8 +17,8 @@
 
 Konfigurasi ini dikembangkan dan disesuaikan berdasarkan karya luar biasa dari komunitas open-source. Penghargaan dan apresiasi setinggi-tingginya kepada para kreator asli:
 
-* **[Symphony by vyrx-dev](https://github.com/vyrx-dev/symphony)** — Desain fondasi antarmuka, arsitektur tema dinamis (`symphony`), skrip utilitas sistem, dan sistem konfigurasi berbasis Lua untuk Hyprland.
-* **[Hyprland-Dots by JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)** — Inspirasi arsitektur modular Waybar, preset tata letak (*configs*), preset gaya visual (*styles*), integrasi cuaca, dan gaya kontrol bar yang fleksibel.
+* **[Symphony by vyrx-dev](https://github.com/vyrx-dev/symphony)** — Pondasi utama antarmuka tema dinamis, arsitektur konfigurasi Hyprland berbasis Lua (`bindings.lua`, `tiling.lua`, dll.), skrip sistem, dan integrasi UI.
+* **[Hyprland-Dots by JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)** — Inspirasi arsitektur modular Waybar, preset tata letak (*configs*), preset gaya visual (*styles*), integrasi cuaca, dan fleksibilitas kontrol bar.
 * **[Catppuccin](https://github.com/catppuccin/catppuccin)** — Palet warna pastel yang lembut untuk estetika desktop (Mocha, Macchiato, Frappé, Latte).
 * **Komunitas Hyprland & Arch Linux** — Untuk ekosistem Wayland yang cepat, dinamis, dan sangat modular.
 
@@ -26,20 +26,22 @@ Konfigurasi ini dikembangkan dan disesuaikan berdasarkan karya luar biasa dari k
 
 ## 🚀 Fitur Unggulan Setup Ini
 
-- **Lua Configuration for Hyprland**: Menggunakan struktur modular berbasis Lua (`bindings.lua`, `animations.lua`, `input.lua`, `windowsrules.lua`, `monitors.lua`).
+- **Lua Configuration for Hyprland**: Menggunakan struktur modular berbasis Lua (`bindings.lua`, `animations.lua`, `input.lua`, `tiling.lua`, `windowsrules.lua`, `monitors.lua`).
 - **Modular Waybar Switcher (Style JaKooLit)**:
-  - Beralih tata letak bar (*Top, Bottom, Dual/SummitSplit, Minimal, Gardenia, dll.*) secara instan.
-  - Beralih gaya tema Waybar (*Catppuccin Mocha, Translucent, Chroma Glow, Neon, EverForest, dll.*) via Rofi picker (`Super + U`).
+  - Beralih tata letak bar (*Top, Bottom, Dual/SummitSplit, Minimal, Gardenia, dll.*) secara instan via picker Rofi.
+  - Beralih gaya tema Waybar (*Catppuccin Mocha, Translucent, Chroma Glow, Neon, EverForest, dll.*) melalui shortcut `SUPER + U`.
 - **Workflow & Productivity**:
-  - **Scratchpad Workspace**: Akses cepat window sembunyi menggunakan `Super + -` dan `Super + Shift + -`.
-  - **Security Tools Shortcut**: Pop-up floating terminal Nmap scanner instan (`Super + Ctrl + N`).
+  - **Scratchpad Workspace**: Akses cepat window sembunyi menggunakan `SUPER + -` (toggle) atau tombol `F12`, dan `SUPER + SHIFT + -` (kirim window ke scratchpad).
+  - **Window Tabbing / Groups**: Satukan beberapa jendela ke dalam satu frame tab via `SUPER + ALT + G` dan navigasi dengan `SUPER + ALT + TAB`.
+  - **Security Tools Shortcut**: Pop-up floating terminal Nmap scanner instan (`SUPER + CTRL + M`).
+  - **Cyber Toolkit & Cheatsheet**: Menu toolkit cepat (`SUPER + CTRL + T`) dan reverse shell/command cheatsheet (`SUPER + CTRL + C`).
+  - **OCR Layar Instan**: Ekstrak teks dari area screenshot langsung ke clipboard (`SUPER + CTRL + O`).
   - **Isolated Workspaces**: Penempatan otomatis aplikasi riset / kerja (Waydroid di WS 11, JADX GUI di WS 12).
-  - **Dual Mode**: Dukungan mode *Vibe* (animasi + blur) dan *Focus Mode* (minimalis tanpa animasi).
+  - **Dual Mode**: Dukungan mode *Vibe* (animasi + blur) dan *Focus Mode* (minimalis tanpa animasi) via `SUPER + CTRL + BACKSPACE`.
 - **Power & Session Control**:
-  - Pop-up Power Menu elegan (`Super + Escape`).
+  - Pop-up Power Menu elegan (`SUPER + ESCAPE` atau tombol fisik power `XF86PowerOff`).
   - Menu layar penuh modern via `wlogout`.
   - Skrip *graceful shutdown* untuk memastikan sesi browser dan aplikasi tersimpan rapi sebelum laptop mati.
-- **Rofi Applets & Menus**: App launcher, Clipboard history (`cliphist`), Emoji picker, Theme selector, Wallpaper changer, dan Keyhints helper (`Super + Alt + K`).
 
 ---
 
@@ -47,12 +49,12 @@ Konfigurasi ini dikembangkan dan disesuaikan berdasarkan karya luar biasa dari k
 
 | Komponen | Aplikasi / Tool |
 |---|---|
-| **Compositor (WM)** | [Hyprland](https://hyprland.org/) |
-| **Status Bar** | [Waybar](https://github.com/Alexays/Waybar) (Modular JaKooLit presets) |
+| **Compositor (WM)** | [Hyprland](https://hyprland.org/) (Lua API Configs) |
+| **Status Bar** | [Waybar](https://github.com/Alexays/Waybar) (Modular JaKooLit presets & switcher) |
 | **Application Launcher** | [Rofi-wayland](https://github.com/lbonn/rofi-wayland) |
 | **Terminal Emulator** | [Kitty](https://sw.kovidgoyal.net/kitty/) |
-| **Power / Session Menu** | `wlogout` & Rofi Powermenu |
-| **Notification Daemon** | [SwayNC](https://github.com/ErikReider/SwayNotificationCenter) |
+| **Power / Session Menu** | `wlogout` & Rofi Powermenu (`graceful-shutdown`) |
+| **Notification Center** | [SwayNC](https://github.com/ErikReider/SwayNotificationCenter) |
 | **Clipboard Manager** | `wl-clipboard` + `cliphist` |
 | **Shell & Prompt** | Zsh + Oh My Zsh + Powerlevel10k + Fastfetch |
 | **Theme & Wallpaper Engine** | `swww` + `matugen` |
@@ -62,38 +64,29 @@ Konfigurasi ini dikembangkan dan disesuaikan berdasarkan karya luar biasa dari k
 ## 🛠️ Panduan Instalasi (Step-by-Step)
 
 > [!WARNING]
-> Sangat disarankan untuk melakukan backup konfigurasi lama Anda di `~/.config` sebelum menerapkan dotfiles ini.
+> Sangat disarankan untuk mem-backup konfigurasi lama Anda di `~/.config` sebelum menerapkan dotfiles ini.
 
 ### 1. Clone Repository
-Clone dotfiles ini ke direktori home Anda:
+Clone dotfiles ini ke direktori home:
 ```bash
 git clone https://github.com/TediKun/hyprland-tediscript.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. Install Dependensi Inti
-Jika Anda menggunakan Arch Linux, pastikan paket-paket penting telah terpasang:
+### 2. Install Dependensi Inti (Arch Linux)
 ```bash
 sudo pacman -S --needed hyprland waybar rofi-wayland kitty swaync wlogout \
-wl-clipboard cliphist fastfetch swww jq python
+wl-clipboard cliphist fastfetch swww jq python zsh
 ```
 
-### 3. Deploy Konfigurasi (GNU Stow / Symlink)
-Dotfiles ini diatur agar kompatibel menggunakan GNU Stow atau membuat symlink langsung ke `~/.config`:
-
-#### Opsi A: Menggunakan Skrip Installer Bawaan
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-#### Opsi B: Symlink Manual
+### 3. Deploy Konfigurasi ke `~/.config`
+Konfigurasi dapat diterapkan dengan symlink langsung:
 ```bash
 # Backup config lama jika ada
 mkdir -p ~/.config-backup
 mv ~/.config/hypr ~/.config/waybar ~/.config/rofi ~/.config/kitty ~/.config/wlogout ~/.config-backup/ 2>/dev/null
 
-# Hubungkan konfigurasi ke direktori home
+# Hubungkan direktori konfigurasi
 ln -sf ~/dotfiles/.config/hypr ~/.config/hypr
 ln -sf ~/dotfiles/.config/waybar ~/.config/waybar
 ln -sf ~/dotfiles/.config/rofi ~/.config/rofi
@@ -102,52 +95,110 @@ ln -sf ~/dotfiles/.config/wlogout ~/.config/wlogout
 ln -sf ~/dotfiles/.config/fastfetch ~/.config/fastfetch
 ```
 
-### 4. Berikan Hak Akses Eksekusi pada Skrip
-Pastikan semua skrip pendukung dapat dieksekusi:
+### 4. Berikan Izin Eksekusi pada Skrip
 ```bash
 chmod +x ~/.config/hypr/scripts/*
 chmod +x ~/.config/waybar/scripts/*
 chmod +x ~/.config/rofi/scripts/*
+chmod +x ~/scripts/* 2>/dev/null
 ```
 
 ---
 
-## ⌨️ Shortcut / Keybindings Utama
+## ⌨️ Daftar Keybindings Asli Sistem (Sesuai Konfigurasi)
 
-Daftar shortcut lengkap dapat dibuka langsung di layar desktop kapan saja dengan menekan:  
-👉 **`SUPER + ALT + K`**
+> [!TIP]
+> Daftar shortcut interaktif visual dapat dipanggil kapan saja di desktop dengan menekan:  
+> **`SUPER + ALT + K`**
 
-### 💻 Manajemen Jendela & Sistem
-| Shortcut | Aksi |
+### 💻 Aplikasi Utama
+| Shortcut | Aksi / Fungsi |
 |---|---|
-| `SUPER + Q` | Membuka Terminal (Kitty) |
-| `SUPER + C` | Menutup jendela aktif |
-| `SUPER + E` | Membuka File Manager |
-| `SUPER + SPACE` | Membuka Application Launcher (Rofi) |
-| `SUPER + V` | Membuka Riwayat Clipboard |
-| `SUPER + F` | Toggle Fullscreen |
-| `SUPER + SHIFT + SPACE` | Toggle Floating Window |
-| `SUPER + ESCAPE` | Membuka Menu Matikan/Restart Laptop (Powermenu) |
+| `SUPER + RETURN` | Buka Terminal (Kitty di direktori aktif) |
+| `SUPER + Q` | **Tutup jendela aktif** |
+| `SUPER + B` | Peramban Web (Browser) |
+| `SUPER + E` | Manajer Berkas (Nautilus) |
+| `SUPER + C` | Editor Kode (Zed) |
+| `SUPER + M` | Pemutar Musik (Spotify) |
+| `SUPER + D` | Komunikasi (Vesktop / Discord) |
+| `SUPER + O` | Catatan (Obsidian) |
+| `SUPER + /` | Manajer Sandi (Bitwarden) |
+| `ALT + Q` | File Manager Terminal (Yazi) |
+| `ALT + N` | Editor Teks Terminal (Neovim) |
+| `ALT + /` | Pemantau Aktivitas Sistem (Btop) |
+| `SUPER + S` | Pengatur Volume / Audio (Wiremix) |
 
-### 🎨 Tampilan & Kustomisasi
-| Shortcut | Aksi |
+### 🪟 Manajemen Tiling, Window & Workspace
+| Shortcut | Aksi / Fungsi |
 |---|---|
-| `SUPER + U` | **Waybar Style & Layout Switcher** (Pilih layout JaKooLit / tema warna) |
-| `SUPER + W` | Ganti Wallpaper Acak |
-| `SUPER + ALT + W` | Pemilih Wallpaper Interaktif (Rofi) |
-| `SUPER + T` | Pemilih Tema Desktop |
-| `SUPER + CTRL + BACKSPACE` | Toggle Focus Mode (On/Off Animasi & Transparansi) |
+| `SUPER + F` | Toggle Layar Penuh (Fullscreen) |
+| `SUPER + SHIFT + V` | **Toggle Jendela Melayang (Floating)** |
+| `SUPER + V` | Mode Pseudotile |
+| `ALT + J` | Pisah / Satukan Tiling (Toggle Split) |
+| `SUPER + H / J / K / L` | Pindah Fokus Window (Vim Keys: Kiri / Bawah / Atas / Kanan) |
+| `SUPER + Arrow Keys` | Pindah Fokus Window (Panah Kiri / Kanan / Atas / Bawah) |
+| `SUPER + SHIFT + Arrow Keys` | Tukar Posisi Jendela Aktif |
+| `SUPER + 1` s/d `9` | Pindah ke Workspace 1 s/d 9 |
+| `SUPER + SHIFT + 1` s/d `9` | Pindahkan jendela ke Workspace 1 s/d 9 |
+| `SUPER + TAB` | Kembali ke Workspace sebelumnya |
+| `ALT + TAB` | Beralih antar jendela terbuka |
+| `SUPER + Drag Klik Kiri (LMB)` | Geser posisi jendela bebas |
+| `SUPER + Drag Klik Kanan (RMB)` | Ubah ukuran jendela bebas |
+| `SUPER + ALT + SHIFT + Arrow Keys`| Resize ukuran jendela bertahap (40px) |
 
-### 🛠️ Workspace & Utility Tambahan
-| Shortcut | Aksi |
+### 📑 Window Grouping & Scratchpad
+| Shortcut | Aksi / Fungsi |
 |---|---|
-| `SUPER + -` | Buka/Tutup Scratchpad (Special Workspace) |
-| `SUPER + SHIFT + -` | Pindahkan jendela aktif ke Scratchpad |
-| `SUPER + CTRL + N` | Nmap Scanner Interaktif (Floating window) |
-| `SUPER + P` | Screenshot Tool dengan editor area |
-| `SUPER + 1 - 9` | Pindah ke Workspace 1 s/d 9 |
+| `SUPER + -` atau `F12` | **Buka / Tutup Scratchpad Terminal** |
+| `SUPER + SHIFT + -` | Kirim jendela aktif ke Scratchpad |
+| `SUPER + ALT + G` | Gabungkan / Pisahkan jendela ke Group Tab |
+| `SUPER + ALT + TAB` | Pindah tab berikutnya dalam group |
+| `SUPER + ALT + SHIFT + TAB` | Pindah tab sebelumnya dalam group |
+
+### 🔍 Menu Rofi & Waybar
+| Shortcut | Aksi / Fungsi |
+|---|---|
+| `SUPER + SPACE` | **Peluncur Aplikasi (Rofi drun)** |
+| `ALT + ,` *(koma)* | **Riwayat Papan Klip (Clipboard History)** |
+| `ALT + .` *(titik)* | Pemilih Emoji |
+| `ALT + SPACE` | Pencari Berkas Cepat |
+| `SUPER + N` | Buka Pusat Notifikasi (SwayNC) |
+| `SUPER + SHIFT + N` | Menu WiFi |
+| `SUPER + SHIFT + SPACE` | Sembunyikan / Tampilkan Waybar |
+| `SUPER + U` | **Waybar Switcher (Ganti Layout & Style JaKooLit)** |
+
+### 🎨 Tema & Tampilan
+| Shortcut | Aksi / Fungsi |
+|---|---|
+| `SUPER + ALT + SPACE` | Pemilih Wallpaper Interaktif (Rofi) |
+| `SUPER + CTRL + SPACE` | Generate Palet Warna Tema dari Wallpaper (Matugen) |
+| `SUPER + ALT + Up` | Ganti varian wallpaper tema aktif |
+| `SUPER + ALT + Right / Left` | Ganti wallpaper berikutnya / sebelumnya |
+| `SUPER + BACKSPACE` | Toggle Transparansi Terminal |
+| `SUPER + CTRL + BACKSPACE` | **Toggle Focus Mode (On/Off Animasi & Blur)** |
+
+### ⚡ Daya & Keamanan
+| Shortcut | Aksi / Fungsi |
+|---|---|
+| `SUPER + ESCAPE` | **Menu Daya (Shutdown, Reboot, Suspend, Logout)** |
+| `XF86PowerOff` | Tombol Fisik Power $\rightarrow$ Menu Daya |
+| `SUPER + SHIFT + L` | Kunci Layar (Lock Screen) |
+| `SUPER + CTRL + Up` | Mulai ulang komputer (Graceful Reboot) |
+| `SUPER + SHIFT + K` | Force Kill Aplikasi (Klik jendela target) |
+| `SUPER + ALT + K` | **Tampilkan Contekan Keybind (Keyhints)** |
+
+### 🛠️ Cyber Security & Productivity Toolkit
+| Shortcut | Aksi / Fungsi |
+|---|---|
+| `SUPER + CTRL + M` | **Nmap Interactive Scanner (Floating Window)** |
+| `SUPER + CTRL + T` | Cyber Security Toolkit Menu (Netcat/HTTP/IP/Docker) |
+| `SUPER + CTRL + C` | Reverse Shell & Cheatsheet Quick Copy |
+| `SUPER + CTRL + O` | OCR Layar (Ambil teks dari seleksi layar ke clipboard) |
+| `SUPER + CTRL + Y` | Pentest Target Manager (Set & Copy Target IP) |
+| `SUPER + CTRL + X` | Scaffold Folder Lab / Target Pentest Baru |
+| `SUPER + ALT + P` | Toggle Mode Picture-in-Picture (PiP Pin) |
 
 ---
 
 ## 📄 Lisensi
-Konfigurasi ini dilisensikan di bawah lisensi **MIT License** — silakan gunakan, pelajari, dan modifikasi sesuai preferensi alur kerja Anda dengan tetap menyertakan atribusi ke pembuat awal.
+Konfigurasi ini dilisensikan di bawah lisensi **MIT License** — bebas digunakan dan dimodifikasi dengan tetap mempertahankan atribusi kepada pembuat aslinya.
