@@ -1,0 +1,107 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Catppuccin Mocha */
+
+@import "catppuccin-themes/mocha.css";
+
+* {
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: bold;
+	min-height: 0;
+	font-size: 97%;
+	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+}
+
+window#waybar {
+  	transition-property: background-color;
+  	transition-duration: 0.5s;
+  	background: transparent;
+  	border-radius: 10px;
+}
+
+window#waybar.hidden {
+  	opacity: 0.2;
+}
+
+window#waybar.empty,
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0px;
+    border: 0px;
+}
+
+#workspaces {
+    background-color: @surface0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px 6px;
+    border-radius: 10px;
+}
+
+#workspaces button {
+    padding: 2px 6px;
+    margin: 2px 2px;
+    border-radius: 8px;
+    color: @text;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    background-color: @mauve;
+    color: @crust;
+}
+
+#workspaces button:hover {
+    background-color: @surface1;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-power,
+#custom-menu,
+#custom-nightlight {
+    padding: 2px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 10px;
+    background-color: @surface0;
+    color: @text;
+}
+
+#clock {
+    color: @lavender;
+}
+
+#pulseaudio {
+    color: @sapphire;
+}
+
+#network {
+    color: @teal;
+}
+
+#battery {
+    color: @green;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @crust;
+}
+
+#custom-power {
+    color: @red;
+}

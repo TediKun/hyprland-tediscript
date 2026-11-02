@@ -1,0 +1,25 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 5,
+  "height": 0,
+  "modules-left": [
+    "custom/menu",  
+    "wlr/taskbar",
+   ],
+  "modules-center": [
+    "hyprland/workspaces#rw", 
+   ],
+  "modules-right": [
+    "hyprland/window",
+    "tray",
+    "group/notify",
+    "mpris",
+    "keyboard-state",
+    "pulseaudio",
+    "pulseaudio#microphone",	  
+    "custom/nightlight",
+    "custom/power",
+   ]
+}

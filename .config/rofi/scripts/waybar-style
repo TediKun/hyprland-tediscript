@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Waybar Style Menu - Pilih tampilan waybar
+
+set -euo pipefail
+
+THEME_DIR="/home/tediscript/dotfiles/.config/waybar/templates"
+CURRENT_HEIGHT=""
+
+# Get current waybar height
+if [ -f "/home/tediscript/dotfiles/.config/waybar/config.jsonc" ]; then
+    CURRENT_HEIGHT=$(grep '"height"' "/home/tediscript/dotfiles/.config/waybar/config.jsonc" | head -1 | awk '{print $2}' | tr -d '"')
+fi
+
+# Default if not found
+[ -z "$CURRENT_HEIGHT" ] && CURRENT_HEIGHT="32"
+
+# Build menu options
+OPTIONS=""
+for template in simple default media; do
+    TPL_FILE="/home/tediscript/dotfiles/.config/waybar/templates/${template}.jsonc"
+    if [ -f "$TPL_FILE" ]; then
+        HEIGHT="32"
+        [ -f "/home/tediscript/dotfiles/.config/waybar/templates/${template}.jsonc" ] && HEIGHT=$(grep '"height"' "/home/tediscript/dotfiles/.config/waybar/templates/${template}.jsonc" | head -1 | awk '{print $2}' | tr -d '"')
+        [ -z "$HEIGHT" ] && HEIGHT="32"
+        
+        # Mark current selection
+        if [ "$HEIGHT" = "$CURRENT_HEIGHT" ]; then
+            OPTIONS+="🟢 ${template} (height: ${HEIGHT}px)\n"
+        else
+            OPTIONS+="  ${template} (height: ${HEIGHT}px)\n"
+        fi
+    fi
+done
+
+OPTIONS+="\n🔄 Random\n🔙 Kembali"
+
+# Show rofi menu
+CHOICE=$(echo -e "$OPTIONS" | rofi -dmenu -i -p "Waybar Style" -config "$HOME/.config/rofi/custom-rofi/config-keybinds.rasi" 2>/dev/null)
+
+if [ -z "$CHOICE" ]; then
+    exit 0
+fi
+
+# Process selection
+case "$CHOICE" in
+    "simple")
+        /home/tediscript/dotfiles/.config/waybar/scripts/waybar-switch simple
+        ;;
+    "default")
+        /home/tediscript/dotfiles/.config/waybar/scripts/waybar-switch default
+        ;;
+    "media")
+        /home/tediscript/dotfiles/.config/waybar/scripts/waybar-switch media
+        ;;
+    "Random")
+        # Random Pilih antar 3 template
+        TEMPLATES=("simple" "default" "media")
+        RANDOM_TEMPLATE="${TEMPLATES[$((RANDOM % 3))]}"
+        /home/tediscript/dotfiles/.config/waybar/scripts/waybar-switch "$RANDOM_TEMPLATE"
+        ;;
+    "Kembali")
+        # Kembali tanpa perubahan
+        ;;
+esac

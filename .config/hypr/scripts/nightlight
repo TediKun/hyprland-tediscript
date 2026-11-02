@@ -1,0 +1,31 @@
+#!/bin/bash
+# Nightlight toggle and status script for Hyprsunset & Waybar
+
+ON_TEMP=4000
+OFF_TEMP=6000
+
+if ! pgrep -x hyprsunset >/dev/null; then
+  setsid uwsm-app -- hyprsunset &
+  sleep 0.5
+fi
+
+CURRENT_TEMP=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
+CURRENT_TEMP=${CURRENT_TEMP:-$OFF_TEMP}
+
+if [ "$1" == "status" ]; then
+  if [ "$CURRENT_TEMP" -le "$ON_TEMP" ]; then
+    printf '{"text":"","class":"active","tooltip":"Nightlight On (%dK)"}\n' "$CURRENT_TEMP"
+  else
+    printf '{"text":"","class":"inactive","tooltip":"Nightlight Off (%dK)"}\n' "$CURRENT_TEMP"
+  fi
+  exit 0
+fi
+
+# Toggle action
+if [ "$CURRENT_TEMP" -le "$ON_TEMP" ]; then
+  hyprctl hyprsunset temperature $OFF_TEMP
+  notify-send "  Daylight screen temperature" "Temperature set to ${OFF_TEMP}K" -i weather-clear
+else
+  hyprctl hyprsunset temperature $ON_TEMP
+  notify-send "  Nightlight screen temperature" "Temperature set to ${ON_TEMP}K" -i weather-clear-night
+fi

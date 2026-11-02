@@ -1,0 +1,19 @@
+#!/bin/bash
+
+MARKER="$HOME/.local/state/symphony/first-run-done"
+[[ -f "$MARKER" ]] && exit 0
+
+# Wait for Hyprland to initialize
+sleep 2
+
+# Apply default theme
+~/dotfiles/install/themes/symphony switch sakura
+
+# Welcome notifications
+notify-send -u critical "Peluncur Aplikasi" "Tekan Super + Spasi untuk membuka aplikasi"
+notify-send -u critical "Daftar Keybind" "Tekan Super + Alt + K untuk melihat semua keybind"
+notify-send -u critical "Selamat datang di tediscript" "Jalankan 'symphony help' untuk melihat perintah yang tersedia."
+
+# Mark as done (prevents re-running on future boots)
+mkdir -p "$(dirname "$MARKER")"
+touch "$MARKER"

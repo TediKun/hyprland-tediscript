@@ -1,0 +1,38 @@
+#!/bin/bash
+# Toggle antara Vibe Mode (ada jarak & animasi) dan Focus Mode (rapat, tanpa animasi).
+
+STATE_FILE="/tmp/focus-mode-state"
+workspace_id=$(hyprctl activeworkspace -j | jq -r .id)
+
+apply_vibe() {
+  hyprctl eval "hl.workspace_rule({ workspace = '$workspace_id', gaps_out = 10, gaps_in = 4, border_size = 2 })" >/dev/null
+  hyprctl eval "hl.config({ decoration = { rounding = 15 }, animations = { enabled = true } })" >/dev/null
+
+  sed -i 's/background_opacity 1$/background_opacity 0.65/g' "$HOME/.config/kitty/kitty.conf"
+  pkill -SIGUSR1 -x kitty 2>/dev/null
+
+  if ! pgrep -x waybar >/dev/null; then
+    setsid uwsm-app -- waybar >/dev/null 2>&1 &
+  fi
+
+  rm -f "$STATE_FILE"
+  notify-send "Vibe Mode" "Jarak & animasi aktif kembali"
+}
+
+apply_focus() {
+  hyprctl eval "hl.workspace_rule({ workspace = '$workspace_id', gaps_out = 0, gaps_in = 0, border_size = 1 })" >/dev/null
+  hyprctl eval "hl.config({ decoration = { rounding = 0 }, animations = { enabled = false } })" >/dev/null
+
+  sed -i 's/background_opacity 0\.65$/background_opacity 1/g' "$HOME/.config/kitty/kitty.conf"
+  pkill -SIGUSR1 -x kitty 2>/dev/null
+  pkill -x waybar 2>/dev/null
+
+  touch "$STATE_FILE"
+  notify-send "Focus Mode" "Layar rapat, tanpa animasi, waybar disembunyikan"
+}
+
+if [[ -f "$STATE_FILE" ]]; then
+  apply_vibe
+else
+  apply_focus
+fi

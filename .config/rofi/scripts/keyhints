@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""keyhints - FAQ Style: Daftar singkat keybind dengan shortcut jelas di awal baris.
+
+Setiap baris dimulai dengan MODIFIER + KEY terang, lalu deskripsi.
+Cocok untuk pencarian: ketik kata kunci dan lihat shortcutnya langsung.
+
+Pemakaian:
+    keyhints --faq      → Tampilkan FAQ style (mode default)
+    keyhints --print    → Cetak ke terminal
+    keyhints --search "workspace"  → Filter hanya yang terk workspace
+"""
+
+import json, os, subprocess, sys, html
+
+MOD_NAMES = {64: "SUPER", 1: "SHIFT", 4: "CTRL", 8: "ALT"}
+ROFI_CONFIG = os.path.expanduser("~/.config/rofi/custom-rofi/config-keybinds.rasi")
+
+
+def get_binds():
+    out = subprocess.run(["hyprctl", "-j", "binds"], capture_output=True, text=True)
+    if out.returncode != 0: sys.exit("Gagal hyprctl")
+    try: binds = json.loads(out.stdout)
+    except: sys.exit("Bukan JSON valid")
+    return binds
+
+
+def key_name(bind):
+    key = bind.get("key") or ""
+    if not key:
+        code = bind.get("keycode") or 0
+        key = "kode-%d" % code if code else "?"
+    if len(key) == 1: return key.upper()
+    return key
+
+
+def mod_labels(mask):
+    return [name for bit, name in MOD_NAMES.items() if mask & bit]
+
+
+def format_line(mods, key, desc):
+    """Format: SUPER + H  Fokus ke jendela kiri"""
+    mod_str = " + ".join(mods) if mods else "TANPA MOD"
+    return "%s  %s" % (("%s + %s" % (mod_str, key)).ljust(18), desc)
+
+
+def render_faq(rows):
+    """Render format FAQ: grup kategori, setiap baris mulai dengan MOD + KEY"""
+    lines = []
+    # Grup berdasarkan modifier utama
+    groups = {}
+    for mods, key, desc in rows:
+        primary = mods[0] if mods else "TANPA"
+        groups.setdefault(primary, []).append((mods, key, desc))
+
+    for primary in ["SUPER", "ALT", "SUPER+ALT", "SHIFT", "CTRL+ALT", "TANPA MODIFIER"]:
+        if primary not in groups: continue
+        items = groups[primary]
+        lines.append("=== %s (%d) ===" % (primary, len(items)))
+        for mods, key, desc in items:
+            lines.append(format_line(mods, key, desc))
+        lines.append("")  # baris kosong antar grup
+    return lines
+
+
+def render_print(rows):
+    lines = ["Daftar keybind Hyprland (%d aktif)" % len(rows)]
+    for mods, key, desc in rows:
+        mod_str = " + ".join(mods) if mods else "TANPA MOD"
+        lines.append("%s + %s  %s" % (mod_str, key, desc))
+    lines.append("")
+    return lines
+
+
+def main():
+    binds = get_binds()
+    rows = []
+    seen = set()
+    for b in binds:
+        desc = (b.get("description") or "").strip()
+        if not desc: continue
+        mask = b.get("modmask") or 0
+        mods = tuple(name for bit, name in MOD_NAMES.items() if mask & bit)
+        key = key_name(b)
+        sig = (mods, key, desc)
+        if sig in seen: continue
+        seen.add(sig)
+        rows.append((mods, key, desc))
+
+    if not rows: sys.exit("Tidak ada keybind dengan deskripsi.")
+
+    if "--print" in sys.argv[1:]:
+        print("\n".join(render_print(rows)))
+        return
+
+    # Mode FAQ (default)
+    rows_sorted = sorted(rows, key=lambda r: (bool(r[0]) is False,
+                 [MOD_NAMES.get(m, m) for m in r[0]], r[1], r[2].lower()))
+
+    payload = "\n".join(render_faq(rows_sorted)) + "\n"
+
+    if "--search" in sys.argv[1:]:
+        query = sys.argv[2].lower()
+        # Filter rows yang cocok dengan query (case-insensitive di desc atau key)
+        filtered = [r for r in rows_sorted if query in (r[2].lower() or "").lower() or query in (r[1].lower() or "".lower())]
+        if not filtered:
+            print("Tidak ditemukan: %s" % query)
+            return
+        payload = "\n".join(render_faq(filtered)) + "\n"
+
+    if subprocess.run(["pidof", "rofi"], capture_output=True).returncode == 0:
+        subprocess.run(["pkill", "rofi"])
+        return
+
+    rofi = subprocess.run(
+        ["rofi", "-dmenu", "-i", "-p", "Cari keybind:", "-config", ROFI_CONFIG],
+        input=payload, text=True,
+    )
+    if rofi.returncode not in (0, 1): sys.exit(rofi.returncode)
+
+
+if __name__ == "__main__":
+    main()

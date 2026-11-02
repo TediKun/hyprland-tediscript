@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Waybar Switcher - Modular Waybar Switcher (Configs & Styles)
+
+set -euo pipefail
+
+WAYBAR_DIR="$HOME/.config/waybar"
+CONFIG_DIR="$WAYBAR_DIR/configs"
+STYLE_DIR="$WAYBAR_DIR/styles"
+
+menu_options="🎨 Switch Layout (Configs)\n✨ Switch Style (CSS)\n🔄 Restart Waybar"
+
+choice=$(echo -e "$menu_options" | rofi -dmenu -i -p "Waybar Manager" 2>/dev/null || true)
+
+if [ -z "$choice" ]; then
+    exit 0
+fi
+
+case "$choice" in
+    *"Switch Layout"*)
+        layout_choice=$(ls -1 "$CONFIG_DIR" | rofi -dmenu -i -p "Select Layout" 2>/dev/null || true)
+        if [ -n "$layout_choice" ] && [ -f "$CONFIG_DIR/$layout_choice" ]; then
+            cp -L "$WAYBAR_DIR/config.jsonc" "$WAYBAR_DIR/config.jsonc.bak" 2>/dev/null || true
+            cp "$CONFIG_DIR/$layout_choice" "$WAYBAR_DIR/config.jsonc"
+            pkill -x waybar 2>/dev/null || true
+            sleep 0.5
+            setsid waybar >/dev/null 2>&1 & disown
+            notify-send "Waybar" "Layout: $layout_choice" -i preferences-desktop-theme 2>/dev/null || true
+        fi
+        ;;
+    *"Switch Style"*)
+        style_choice=$(ls -1 "$STYLE_DIR" | grep '\.css$' | rofi -dmenu -i -p "Select Style" 2>/dev/null || true)
+        if [ -n "$style_choice" ] && [ -f "$STYLE_DIR/$style_choice" ]; then
+            cp -L "$WAYBAR_DIR/style.css" "$WAYBAR_DIR/style.css.bak" 2>/dev/null || true
+            cp "$STYLE_DIR/$style_choice" "$WAYBAR_DIR/style.css"
+            pkill -x waybar 2>/dev/null || true
+            sleep 0.5
+            setsid waybar >/dev/null 2>&1 & disown
+            notify-send "Waybar" "Style: $style_choice" -i preferences-desktop-theme 2>/dev/null || true
+        fi
+        ;;
+    *"Restart Waybar"*)
+        pkill -x waybar 2>/dev/null || true
+        sleep 0.5
+        setsid waybar >/dev/null 2>&1 & disown
+        notify-send "Waybar" "Waybar reloaded" -i preferences-desktop-theme 2>/dev/null || true
+        ;;
+esac
