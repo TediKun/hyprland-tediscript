@@ -200,5 +200,5 @@ chmod +x ~/scripts/* 2>/dev/null
 
 ---
 
-## 📄 Lisensi
-Konfigurasi ini dilisensikan di bawah lisensi **MIT License** — bebas digunakan dan dimodifikasi dengan tetap mempertahankan atribusi kepada pembuat aslinya.
+
+Ini adalah backup konfigurasi dari ArchLinux Hyprland Aku, ### Miaw Miaw Miaw
