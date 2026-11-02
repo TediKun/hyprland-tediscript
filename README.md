@@ -1,359 +1,153 @@
 <div align="center">
 
-![Banner](assets/banner.jpg)
+# ❄️ Arch Hyprland Dotfiles (`tediscript`)
 
-**A minimal, productivity-focused Arch + Hyprland setup**
+**A modern, aesthetic, highly modular Arch Linux + Hyprland rice customized for workflow, cybersecurity, and coding.**
 
-<a href="#installation"><img src="https://img.shields.io/badge/Install-c4a7e7?style=for-the-badge&logoColor=1a1b26" alt="Install"/></a>&ensp;
-<a href="#themes"><img src="https://img.shields.io/badge/Themes-f5a97f?style=for-the-badge&logoColor=1a1b26" alt="Themes"/></a>&ensp;
-<a href="install/themes/README.md"><img src="https://img.shields.io/badge/Symphony-f5c2e7?style=for-the-badge&logoColor=1a1b26" alt="Symphony"/></a>&ensp;
-<a href="#usage"><img src="https://img.shields.io/badge/Usage-7aa2f7?style=for-the-badge&logoColor=1a1b26" alt="Usage"/></a>&ensp;
-<a href="#keybindings"><img src="https://img.shields.io/badge/Keybindings-9ece6a?style=for-the-badge&logoColor=1a1b26" alt="Keybindings"/></a>
-
-</div>
-
-## Showcase
-
- https://github.com/user-attachments/assets/8f59ff8d-90ab-4a0c-a2d6-9346307f5de1
-
----
-## Note
-
-I don’t use Hyprland anymore, so I’m archiving this project.
-
-If you still want to use it, feel free to fork it and maintain it yourself. I might unarchive it in the future if I get a spare machine.
-
-You can still use the configs separately in your own dotfiles, which was always the main purpose of this project rather than directly copying my full setup :).
-
----
-## Features
-
-- **One-command theming** — Switch entire desktop look with `symphony switch`
-- **Dynamic colors** — Matugen extracts palette from any wallpaper
-- **11 handcrafted themes** — Dark, cozy, and aesthetic
-- **Everything synced** — Terminal, bar, launcher, notifications, apps
-- **Rofi menus** — App launcher, emoji picker, clipboard, wallpaper selector, power profiles
-- **Dual mode** — Vibe (animations + blur) or Focus (minimal + fast)
-- **Music integration** — MPD + RMPC + Cava visualizer
-
-<details>
-<summary><b>Dual Mode System</b></summary>
-
-Sometimes you want your desktop to look good. Other times you just need to get work done.
-
-**Vibe Mode**
-
-The default look — animations, blur, transparency, gaps. Makes everything feel smooth and polished.
-
-**Focus Mode**
-
-Strips it all down. No animations, minimal borders, transparency off. Just you and your work.
-
-Toggle between them with `Super + Ctrl + Backspace`
-
-</details>
-
----
-
-## Themes
-
-<table>
-<tr>
-<td align="center"><img src="assets/void.png" width="400"/><br><b>Void</b></td>
-<td align="center"><img src="assets/sakura.png" width="400"/><br><b>Sakura</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/espresso.png" width="400"/><br><b>Espresso</b></td>
-<td align="center"><img src="assets/rose-pine.png" width="400"/><br><b>Rosé Pine</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/gruvbox-material.png" width="400"/><br><b>Gruvbox Material</b></td>
-<td align="center"><img src="assets/tokyo-night.png" width="400"/><br><b>Tokyo Night</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/kanagawa.png" width="400"/><br><b>Kanagawa</b></td>
-<td align="center"><img src="assets/nordic.png" width="400"/><br><b>Nordic</b></td>
-</tr>
-<tr>
-<td align="center"><img src="assets/forest.png" width="400"/><br><b>Forest</b></td>
-<td align="center"><img src="assets/zen.png" width="400"/><br><b>Zen</b></td>
-</tr>
-</table>
-
-<div align="center">
-
-### Dynamic Theme
-
-![Dynamic Theme](assets/dynamic.gif)
-
-_Colors generated from wallpaper using Matugen_
+[![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://archlinux.org/)
+[![Hyprland](https://img.shields.io/badge/Hyprland-00AAEE?style=for-the-badge&logo=hyprland&logoColor=white)](https://hyprland.org/)
+[![Waybar](https://img.shields.io/badge/Waybar-Modular-00BF8F?style=for-the-badge)](https://github.com/Alexays/Waybar)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 </div>
 
 ---
 
-## Rofi & Notifications
+## 📌 Credits & Acknowledgements
 
-<div align="center">
+Konfigurasi ini dikembangkan dan disesuaikan berdasarkan karya luar biasa dari komunitas open-source. Penghargaan dan apresiasi setinggi-tingginya kepada para kreator asli:
 
-![Rofi and SwayNC](assets/rofi-swaync.gif)
-
-</div>
-
-<details>
-<summary><b>Rofi Menus</b></summary>
-
-<div align="center">
-
-**Wallpaper Selector**
-
-![Wallpaper Selector](assets/rofi-wall-selector.png)
-
-**Music**
-
-![Music](assets/rofi-music.png)
-
-|             App Launcher             |              Emoji Picker              |                Power Menu                 |
-| :----------------------------------: | :------------------------------------: | :---------------------------------------: |
-| ![App Launcher](assets/rofi-app.png) | ![Emoji Picker](assets/rofi-emoji.png) | ![Power Menu](assets/rofi-power-menu.png) |
-
-</div>
-
-</details>
+* **[Symphony by vyrx-dev](https://github.com/vyrx-dev/symphony)** — Desain fondasi antarmuka, arsitektur tema dinamis (`symphony`), skrip utilitas sistem, dan sistem konfigurasi berbasis Lua untuk Hyprland.
+* **[Hyprland-Dots by JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)** — Inspirasi arsitektur modular Waybar, preset tata letak (*configs*), preset gaya visual (*styles*), integrasi cuaca, dan gaya kontrol bar yang fleksibel.
+* **[Catppuccin](https://github.com/catppuccin/catppuccin)** — Palet warna pastel yang lembut untuk estetika desktop (Mocha, Macchiato, Frappé, Latte).
+* **Komunitas Hyprland & Arch Linux** — Untuk ekosistem Wayland yang cepat, dinamis, dan sangat modular.
 
 ---
 
-## Hyprlock
+## 🚀 Fitur Unggulan Setup Ini
 
-<div align="center">
-
-![Hyprlock](assets/hyprlock.png)
-
-</div>
-
----
-
-## Neovim
-
-<div align="center">
-
-![Neovim](assets/neovim-showcase.gif)
-
-</div>
-
----
-
-## Music
-
-<div align="center">
-
-![Music](assets/music-showcase.gif)
-
-_RMPC + Cava visualizer_
-
-</div>
+- **Lua Configuration for Hyprland**: Menggunakan struktur modular berbasis Lua (`bindings.lua`, `animations.lua`, `input.lua`, `windowsrules.lua`, `monitors.lua`).
+- **Modular Waybar Switcher (Style JaKooLit)**:
+  - Beralih tata letak bar (*Top, Bottom, Dual/SummitSplit, Minimal, Gardenia, dll.*) secara instan.
+  - Beralih gaya tema Waybar (*Catppuccin Mocha, Translucent, Chroma Glow, Neon, EverForest, dll.*) via Rofi picker (`Super + U`).
+- **Workflow & Productivity**:
+  - **Scratchpad Workspace**: Akses cepat window sembunyi menggunakan `Super + -` dan `Super + Shift + -`.
+  - **Security Tools Shortcut**: Pop-up floating terminal Nmap scanner instan (`Super + Ctrl + N`).
+  - **Isolated Workspaces**: Penempatan otomatis aplikasi riset / kerja (Waydroid di WS 11, JADX GUI di WS 12).
+  - **Dual Mode**: Dukungan mode *Vibe* (animasi + blur) dan *Focus Mode* (minimalis tanpa animasi).
+- **Power & Session Control**:
+  - Pop-up Power Menu elegan (`Super + Escape`).
+  - Menu layar penuh modern via `wlogout`.
+  - Skrip *graceful shutdown* untuk memastikan sesi browser dan aplikasi tersimpan rapi sebelum laptop mati.
+- **Rofi Applets & Menus**: App launcher, Clipboard history (`cliphist`), Emoji picker, Theme selector, Wallpaper changer, dan Keyhints helper (`Super + Alt + K`).
 
 ---
 
-## Installation
+## 📋 Software Stack
 
+| Komponen | Aplikasi / Tool |
+|---|---|
+| **Compositor (WM)** | [Hyprland](https://hyprland.org/) |
+| **Status Bar** | [Waybar](https://github.com/Alexays/Waybar) (Modular JaKooLit presets) |
+| **Application Launcher** | [Rofi-wayland](https://github.com/lbonn/rofi-wayland) |
+| **Terminal Emulator** | [Kitty](https://sw.kovidgoyal.net/kitty/) |
+| **Power / Session Menu** | `wlogout` & Rofi Powermenu |
+| **Notification Daemon** | [SwayNC](https://github.com/ErikReider/SwayNotificationCenter) |
+| **Clipboard Manager** | `wl-clipboard` + `cliphist` |
+| **Shell & Prompt** | Zsh + Oh My Zsh + Powerlevel10k + Fastfetch |
+| **Theme & Wallpaper Engine** | `swww` + `matugen` |
+
+---
+
+## 🛠️ Panduan Instalasi (Step-by-Step)
+
+> [!WARNING]
+> Sangat disarankan untuk melakukan backup konfigurasi lama Anda di `~/.config` sebelum menerapkan dotfiles ini.
+
+### 1. Clone Repository
+Clone dotfiles ini ke direktori home Anda:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vyrx-dev/dotfiles/main/boot.sh | bash
+git clone https://github.com/TediKun/hyprland-tediscript.git ~/dotfiles
+cd ~/dotfiles
 ```
 
-Or manually:
-
+### 2. Install Dependensi Inti
+Jika Anda menggunakan Arch Linux, pastikan paket-paket penting telah terpasang:
 ```bash
-git clone https://github.com/vyrx-dev/dotfiles ~/dotfiles
-cd ~/dotfiles && ./install.sh
+sudo pacman -S --needed hyprland waybar rofi-wayland kitty swaync wlogout \
+wl-clipboard cliphist fastfetch swww jq python
 ```
 
-### Themes Only
+### 3. Deploy Konfigurasi (GNU Stow / Symlink)
+Dotfiles ini diatur agar kompatibel menggunakan GNU Stow atau membuat symlink langsung ke `~/.config`:
 
-Want just the themes without the full setup? See [install/themes/README.md](install/themes/README.md)
-
----
-
-## Usage
-
-### Theme Switching
-
+#### Opsi A: Menggunakan Skrip Installer Bawaan
 ```bash
-symphony switch          # interactive picker
-symphony switch sakura   # direct switch
-symphony switch --random # random theme
-symphony list            # show all themes
-symphony reload          # re-apply current
+chmod +x install.sh
+./install.sh
 ```
 
-Or press `Super + Ctrl + Shift + Space` for the theme picker.
+#### Opsi B: Symlink Manual
+```bash
+# Backup config lama jika ada
+mkdir -p ~/.config-backup
+mv ~/.config/hypr ~/.config/waybar ~/.config/rofi ~/.config/kitty ~/.config/wlogout ~/.config-backup/ 2>/dev/null
 
-<a id="keybindings"></a>
-
-### Keybindings
-
-<details>
-<summary><b>Applications</b></summary>
-
-| Key              | Action       |
-| ---------------- | ------------ |
-| `Super + Return` | Terminal     |
-| `Super + B`      | Browser      |
-| `Super + E`      | File Manager |
-| `Super + M`      | Spotify      |
-| `Super + D`      | Discord      |
-| `Super + O`      | Obsidian     |
-| `Super + C`      | VS Code      |
-| `Alt + M`        | RMPC         |
-| `Alt + N`        | Neovim       |
-| `Alt + Q`        | Yazi         |
-| `Alt + /`        | Btop         |
-
-</details>
-
-<details>
-<summary><b>Rofi Menus</b></summary>
-
-| Key                            | Action           |
-| ------------------------------ | ---------------- |
-| `Super + Space`                | App Launcher     |
-| `Alt + ,`                      | Clipboard        |
-| `Alt + .`                      | Emoji Picker     |
-| `Super + Ctrl + B`             | Power Profiles   |
-| `Super + Ctrl + Space`         | Matugen Theme    |
-| `Super + Alt + Space`          | Wallpaper Picker |
-| `Super + Ctrl + Shift + Space` | Theme Switcher   |
-
-</details>
-
-<details>
-<summary><b>Window Management</b></summary>
-
-| Key                     | Action                   |
-| ----------------------- | ------------------------ |
-| `Super + Q`             | Close Window             |
-| `Super + K`             | Kill Application         |
-| `Super + Arrow`         | Move Focus               |
-| `Super + Shift + Arrow` | Move Window              |
-| `Super + Ctrl + Arrow`  | Resize Window            |
-| `Super + 1-9`           | Switch Workspace         |
-| `Super + Shift + 1-9`   | Move to Workspace        |
-| `Super + F`             | Fullscreen               |
-| `Super + V`             | Toggle Floating          |
-| `Super + Shift + O`     | Pop Window (Float & Pin) |
-
-</details>
-
-<details>
-<summary><b>System</b></summary>
-
-| Key                        | Action                 |
-| -------------------------- | ---------------------- |
-| `Super + Shift + L`        | Lock Screen            |
-| `Super + Escape`           | Power Menu             |
-| `Super + N`                | Notifications          |
-| `Super + Backspace`        | Toggle Transparency    |
-| `Super + Ctrl + Backspace` | Toggle Focus/Vibe Mode |
-
-</details>
-
-<details>
-<summary><b>Screenshots & Recording</b></summary>
-
-| Key                 | Action          |
-| ------------------- | --------------- |
-| `Super + P`         | Screenshot      |
-| `Super + R`         | Screen Record   |
-| `Super + Shift + R` | Record with Mic |
-| `Super + Shift + P` | Color Picker    |
-
-</details>
-
-<details>
-<summary><b>Wallpapers</b></summary>
-
-| Key                        | Action                    |
-| -------------------------- | ------------------------- |
-| `Ctrl + Alt + Space`       | Random Wallpaper + Colors |
-| `Super + Alt + Left/Right` | Cycle Wallpapers          |
-
-</details>
-
-See [.config/hypr/bindings.conf](.config/hypr/bindings.conf) for full list.
-
----
-
-## Components
-
-| Component     | Tool                                                                        |
-| ------------- | --------------------------------------------------------------------------- |
-| Compositor    | [Hyprland](https://hyprland.org/)                                           |
-| Bar           | [Waybar](https://github.com/Alexays/Waybar)                                 |
-| Launcher      | [Rofi](https://github.com/lbonn/rofi)                                       |
-| Terminal      | [Kitty](https://sw.kovidgoyal.net/kitty/) / [Ghostty](https://ghostty.org/) |
-| Notifications | [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)              |
-| Lock screen   | [Hyprlock](https://github.com/hyprwm/hyprlock)                              |
-| Theme engine  | [Matugen](https://github.com/InioX/matugen)                                 |
-| Music         | [MPD](https://musicpd.org/) + [RMPC](https://github.com/mierak/rmpc)        |
-| Visualizer    | [Cava](https://github.com/karlstav/cava)                                    |
-| Editor        | [Neovim](https://neovim.io/)                                                |
-| Shell         | [Fish](https://fishshell.com/) + [Starship](https://starship.rs/)           |
-
----
-
-## Structure
-
+# Hubungkan konfigurasi ke direktori home
+ln -sf ~/dotfiles/.config/hypr ~/.config/hypr
+ln -sf ~/dotfiles/.config/waybar ~/.config/waybar
+ln -sf ~/dotfiles/.config/rofi ~/.config/rofi
+ln -sf ~/dotfiles/.config/kitty ~/.config/kitty
+ln -sf ~/dotfiles/.config/wlogout ~/.config/wlogout
+ln -sf ~/dotfiles/.config/fastfetch ~/.config/fastfetch
 ```
-~/dotfiles/
-├── .config/
-│   ├── hypr/           # Hyprland (compositor, bindings, animations)
-│   ├── waybar/         # Status bar
-│   ├── rofi/           # Launcher & menus
-│   ├── swaync/         # Notifications
-│   ├── kitty/          # Terminal
-│   ├── ghostty/        # Terminal (alt)
-│   ├── alacritty/      # Terminal (alt)
-│   ├── nvim/           # Neovim
-│   ├── fish/           # Shell
-│   ├── tmux/           # Terminal multiplexer
-│   ├── yazi/           # File manager
-│   ├── btop/           # System monitor
-│   ├── rmpc/           # Music player
-│   ├── matugen/        # Theme generator templates
-│   └── lazygit/        # Git UI
-├── themes/             # Theme configs (colors, wallpapers)
-├── scripts/            # Utility scripts
-└── install/            # Installer
-    ├── packages.sh     # Package lists
-    ├── stow.sh         # Dotfile deployment
-    ├── services.sh     # Systemd services
-    └── themes/         # Symphony theme system
+
+### 4. Berikan Hak Akses Eksekusi pada Skrip
+Pastikan semua skrip pendukung dapat dieksekusi:
+```bash
+chmod +x ~/.config/hypr/scripts/*
+chmod +x ~/.config/waybar/scripts/*
+chmod +x ~/.config/rofi/scripts/*
 ```
 
 ---
 
-## Credits
+## ⌨️ Shortcut / Keybindings Utama
 
-Learned/Copied(😁) a lot from these projects:
+Daftar shortcut lengkap dapat dibuka langsung di layar desktop kapan saja dengan menekan:  
+👉 **`SUPER + ALT + K`**
 
-- [HyDE-Project/HyDE](https://github.com/HyDE-Project/HyDE)
-- [JaKooLit/Hyprland-Dots](https://github.com/JaKooLit/Hyprland-Dots)
-- [basecamp/omarchy](https://github.com/basecamp/omarchy)
-- [bjarneo/aether.nvim](https://github.com/bjarneo/aether.nvim)
+### 💻 Manajemen Jendela & Sistem
+| Shortcut | Aksi |
+|---|---|
+| `SUPER + Q` | Membuka Terminal (Kitty) |
+| `SUPER + C` | Menutup jendela aktif |
+| `SUPER + E` | Membuka File Manager |
+| `SUPER + SPACE` | Membuka Application Launcher (Rofi) |
+| `SUPER + V` | Membuka Riwayat Clipboard |
+| `SUPER + F` | Toggle Fullscreen |
+| `SUPER + SHIFT + SPACE` | Toggle Floating Window |
+| `SUPER + ESCAPE` | Membuka Menu Matikan/Restart Laptop (Powermenu) |
 
-Wallpapers: [vyrx-dev/wallpapers](https://github.com/vyrx-dev/wallpapers)
+### 🎨 Tampilan & Kustomisasi
+| Shortcut | Aksi |
+|---|---|
+| `SUPER + U` | **Waybar Style & Layout Switcher** (Pilih layout JaKooLit / tema warna) |
+| `SUPER + W` | Ganti Wallpaper Acak |
+| `SUPER + ALT + W` | Pemilih Wallpaper Interaktif (Rofi) |
+| `SUPER + T` | Pemilih Tema Desktop |
+| `SUPER + CTRL + BACKSPACE` | Toggle Focus Mode (On/Off Animasi & Transparansi) |
+
+### 🛠️ Workspace & Utility Tambahan
+| Shortcut | Aksi |
+|---|---|
+| `SUPER + -` | Buka/Tutup Scratchpad (Special Workspace) |
+| `SUPER + SHIFT + -` | Pindahkan jendela aktif ke Scratchpad |
+| `SUPER + CTRL + N` | Nmap Scanner Interaktif (Floating window) |
+| `SUPER + P` | Screenshot Tool dengan editor area |
+| `SUPER + 1 - 9` | Pindah ke Workspace 1 s/d 9 |
 
 ---
 
-<a href="https://www.star-history.com/#vyrx-dev/dotfiles&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=vyrx-dev/symphony&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=vyrx-dev/symphony&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=vyrx-dev/symphony&type=date&legend=top-left" />
- </picture>
-</a>
-<div align="center">
-
-**[Report Bug](https://github.com/vyrx-dev/dotfiles/issues/new?template=bug_report.yml)** · **[Request Feature](https://github.com/vyrx-dev/dotfiles/issues/new?template=feature_request.yml)** · **[TODO](TODO.md)**
-
-</div>
+## 📄 Lisensi
+Konfigurasi ini dilisensikan di bawah lisensi **MIT License** — silakan gunakan, pelajari, dan modifikasi sesuai preferensi alur kerja Anda dengan tetap menyertakan atribusi ke pembuat awal.
